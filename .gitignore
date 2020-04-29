@@ -1,0 +1,9 @@
+# Node modules
+node_modules/
+
+# Firebase configuration
+.firebaserc
+firebase.json
+
+# TCPDF library
+public_html/tcpdf
