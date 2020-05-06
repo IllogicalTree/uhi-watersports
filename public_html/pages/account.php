@@ -6,12 +6,10 @@
 
   */
 
-  require_once('../includes/navigation.php');
   require_once('../includes/helper.php');
+  require_once('../includes/navigation.php');
   
   // Throw an error if no user authenticated
-  echo $user;
-  //print_r($member);
   if (!$user) {
     return error('Log in to gain access to this page', 'index.php');
   }
@@ -22,15 +20,22 @@
 
 ?>
 
-<h1>Member Details</h1>
+<h1 class='center-align'>Member Details</h1>
+
+<div class="container">
+  <?php if ($error): ?>
+    <blockquote> <?= $error ?> </blockquote>
+    <?php $_SESSION['error'] = false ?>
+  <?php endif; ?>
 
 <?php
   foreach ($member as $key => $value) {
-    echo "$key - $value <br>";
+    if ($key !== "passwordHash") {
+      echo "$key - $value <br>";
+    };
   }
 ?>
 
-<h1>Category Details</h1>
 <?php
   foreach ($category as $key => $value) {
     echo "$key - $value <br>";

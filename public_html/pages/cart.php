@@ -7,14 +7,22 @@
   */
 
   require_once('../includes/helper.php');
-  require_once( '../includes/navigation.php'); 
-
-  // Output message when cart empty
-  if (count($cart) < 1) echo 'Your cart is empty <br><br>'; 
+  require_once( '../includes/navigation.php');
 
   $grandTotal = 0;
 ?>
 
+<br>
+<div class="container">
+  <?php if ($error): ?>
+    <blockquote> <?= $error ?> </blockquote>
+    <?php $_SESSION['error'] = false ?>
+  <?php endif; ?>
+  
+  <?php if (count($cart) < 1): ?>
+    <blockquote>Your cart is empty, add some items!</blockquote>
+  <?php endif; ?>
+  
 <?php foreach ($cart as $cartItem): ?>
 
   <?php
@@ -41,7 +49,7 @@
         min=1 
         max=40
       >
-      <input type='submit' value='Save Changes'>
+      <input class='btn green' type='submit' value='Save Changes'>
     </form> 
     <form action='/~15027887/methods/removeCartItem.php' method='post'>
       <input 
@@ -49,20 +57,20 @@
         name='stockNo' 
         value='<?= $cartItem['stockNo'] ?>'
       >
-      <input type='submit' value='Remove Product'>
+      <input class='btn red' type='submit' value='Remove Product'>
     </form> 
   </div>
   <br>
 <?php endforeach; ?>
 
 <div>
-  Grand Total: <?= '£' . number_format($grandTotal, 2); ?>
-  <a href="/~15027887/methods/createPayment.php">Check out</a>
+  <div style='font-weight: bold'> Grand Total: <?= '£' . number_format($grandTotal, 2); ?> </div> <br>
+  <a class='btn blue' href="/~15027887/methods/createPayment.php">Check out</a>
   <!--
     As discussed elsewhere, payment implementation is not secure and can be skipped entirely by visiting the correct page
--->
-    <a href="/~15027887/methods/checkout.php">Skip Payment</a>
 
-  <a href="stock.php">Add More Products</a>
+    <a href="/~15027887/methods/checkout.php">Skip Payment</a>
+-->
+  <a class='btn green' href="stock.php">Add More Products</a>
   <p> Use 4242 4242 4242 4242 as card number on check out</p>
 </div>

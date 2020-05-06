@@ -12,9 +12,4 @@
     header('Location: ' . $redirect);
   };
 
-  if ($_SESSION['error']) {
-    echo $_SESSION['error'];
-    $_SESSION['error'] = false;
-  };
-
 ?>
