@@ -15,7 +15,7 @@
   $postcode = requiredParam('postcode', 'register.php');
   $category = requiredParam('category', 'register.php');
   $password = requiredParam('password', 'register.php');
-  $passwordConfirmation = $requiredParam('passwordConfirmation', 'register.php');
+  $passwordConfirmation = requiredParam('passwordConfirmation', 'register.php');
 
   // Returns error if password and password confirmation differ
   if (!($password === $passwordConfirmation)) {
